@@ -17,13 +17,17 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", 
+    origin: ["http://localhost:5173", "https://mamak-v2.vercel.app"], 
     methods: ["GET", "POST"]
   }
 });
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  // This allows your frontend to talk to your backend
+  origin: ["http://localhost:5173", "https://mamak-v2.vercel.app"],
+  credentials: true
+}));
 app.use(express.json());
 
 // ==========================================
