@@ -18,14 +18,14 @@ const server = http.createServer(app);
 // Part 1: Socket.io
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://mamak-seven.vercel.app"], 
+    origin: ["http://localhost:5173", "https://mamak-rho.vercel.app/"], 
     methods: ["GET", "POST"]
   }
 });
 
 // Part 2: Express Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://mamak-seven.vercel.app"],
+  origin: ["http://localhost:5173", "https://mamak-rho.vercel.app/"],
   credentials: true
 }));
 app.use(express.json());
