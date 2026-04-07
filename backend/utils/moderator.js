@@ -1,14 +1,10 @@
-// Gantikan baris atas sekali dengan dynamic import atau gunakan versi yang kompatibel
-const Filter = require('bad-words');
+// Guna require, jangan guna import
+const Filter = require('bad-words'); 
 
 const filter = new Filter();
 
-// Senarai kata kesat tambahan
-const malayBadWords = [
-  'babi', 'anjing', 'pukimak', 'lancau', 'puki', 'kontol', 
-  'bangsat', 'bodoh', 'sial', 'kepala bapak', 'celaka', 'haramjadah'
-];
-
+// Tambah senarai kata kesat bahasa Melayu
+const malayBadWords = ['babi', 'anjing', 'pukimak', 'lancau', 'puki', 'bangsat', 'bodoh', 'sial'];
 filter.addWords(...malayBadWords);
 
 const moderateText = (text) => {
@@ -20,4 +16,5 @@ const moderateText = (text) => {
   }
 };
 
+// Guna module.exports, jangan guna export default
 module.exports = { moderateText };
