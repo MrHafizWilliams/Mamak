@@ -1,0 +1,206 @@
+/* ==========================================================================
+   🖋️ MAMAK TYPOGRAPHY (Google Fonts)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap');
+
+/* ==========================================================================
+   🎨 MENU MAMAK DESIGN SYSTEM (Global Variables)
+   ========================================================================== */
+
+:root {
+  /* ☕ DEFAULT: DARK MODE (Kopi O Kosong) */
+  --bg-main: #0a0705;          /* Very deep, rich coffee black */
+  --bg-card: #140f0b;          /* Slightly lighter roasted brown for cards */
+  --bg-input: #1f1812;         /* Dark input fields */
+  
+  --text-main: #fdfaf6;        /* Off-white (like condensed milk) */
+  --text-muted: #8c7b6d;       /* Muted brownish-gray */
+  
+  --border-color: #2b221a;     /* Subtle dark brown borders */
+  
+  /* 🍽️ THE MAMAK SIGNATURE COLORS */
+  --roti-canai: #F4B41A;       /* Crispy, golden yellow/orange (Primary Accent) */
+  --roti-canai-rgb: 244, 180, 26; 
+  
+  --teh-tarik: #D98032;        /* Frothy, warm orange-brown (Secondary Accent) */
+  
+  --pandan: #4ADE80;           /* Fresh, bright green (For Success/Online statuses) */
+  
+  --sirap-bandung: #FB7185;    /* Sweet, creamy pink (For Hearts/Likes/Errors) */
+  
+  --bg-main-rgb: 10, 7, 5;     /* For backdrop-filter (Glass effect) */
+
+  /* 🖋️ Font Variables */
+  --font-title: 'Poppins', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+/* 🥛 LIGHT MODE (Susu Pekat) */
+body.light-mode {
+  --bg-main: #f8f5f2;          /* Soft, warm off-white (not blinding pure white) */
+  --bg-card: #ffffff;          /* Pure white for posts to pop out */
+  --bg-input: #ebe5df;         /* Soft grayish-beige */
+  
+  --text-main: #1c1511;        /* Very dark brown/black text */
+  --text-muted: #6b5c51;       /* Medium brownish-gray */
+  
+  --border-color: #d6cfc7;     /* Clean, light borders */
+  
+  --bg-main-rgb: 248, 245, 242;
+  
+  /* Note: The signature Mamak colors (Roti Canai, Pandan, etc.) stay the same 
+     because they look great on both dark and light backgrounds! */
+}
+
+/* ── Typography Resets & Basic Styling ── */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-body); /* 🔥 Nunito Regular for all standard text */
+  font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 🔥 Poppins Bold for all Headings and strong text */
+h1, h2, h3, h4, h5, h6, strong {
+  font-family: var(--font-title);
+  font-weight: 700; 
+  margin-top: 0;
+}
+
+/* Keep form inputs readable with Nunito */
+input, textarea {
+  font-family: var(--font-body);
+}
+
+/* Buttons look punchy and modern with Poppins! */
+button {
+  font-family: var(--font-title);
+  font-weight: 600;
+}
+
+/* Make sure scrollbars match the theme! */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-input);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-color);
+}
+
+/* ==========================================================================
+   ✨ TACTILE POST CARDS
+   ========================================================================== */
+.post-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 15px;
+  padding: 20px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  /* Subtle glassmorphism base */
+  backdrop-filter: blur(8px); 
+}
+
+/* The magic happens when the mouse enters the card */
+.post-card:hover {
+  transform: translateY(-4px); /* Lifts the card up slightly */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Adds a soft shadow underneath */
+  border-color: var(--roti-canai); /* Highlights the border with your theme color */
+}
+
+/* Light mode needs a slightly softer shadow */
+body.light-mode .post-card:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08); 
+}
+
+/* ==========================================================================
+   ⏳ SKELETON LOADER ANIMATION
+   ========================================================================== */
+@keyframes pulse-shimmer {
+  0% { background-color: var(--bg-input); opacity: 0.6; }
+  50% { background-color: var(--border-color); opacity: 1; }
+  100% { background-color: var(--bg-input); opacity: 0.6; }
+}
+
+.skeleton-box {
+  animation: pulse-shimmer 1.5s infinite ease-in-out;
+  border-radius: 8px;
+}
+
+.skeleton-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* ==========================================================================
+   📱 MAMAK ON-THE-GO (MOBILE RESPONSIVENESS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* 1. Sembunyikan Trending Sidebar di skrin kecil */
+  .trending-sidebar-mobile-hide {
+    display: none !important;
+  }
+
+  /* 2. Tukar Sidebar kiri menjadi Bottom Navigation Bar */
+  .sidebar-mobile-bottom {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 65px !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+    padding: 0 !important;
+    border-right: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    background-color: rgba(21, 32, 43, 0.95) !important; /* Slightly transparent dark background */
+    backdrop-filter: blur(10px) !important; /* Premium blur effect */
+    z-index: 1000 !important;
+  }
+
+  /* Sembunyikan Logo & Butang Logout di Bottom Nav */
+  .sidebar-hide-mobile {
+    display: none !important;
+  }
+
+  /* Kemaskan butang-butang nav supaya muat di bawah */
+  .sidebar-mobile-bottom .sidebar-item {
+    flex-direction: column !important;
+    gap: 4px !important;
+    padding: 5px 10px !important;
+    border-radius: 10px !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Besarkan icon sikit untuk jari (Touch targets) */
+  .sidebar-mobile-bottom .sidebar-item span:first-child {
+    font-size: 22px !important;
+    margin: 0 !important;
+  }
+
+  /* Kecilkan text di bawah icon */
+  .sidebar-mobile-bottom .sidebar-text-mobile {
+    font-size: 10px !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  /* 3. Beri ruang di bawah main feed supaya tak ditutup oleh Bottom Nav */
+  .main-feed-mobile {
+    margin-bottom: 70px !important;
+    border-right: none !important;
+    min-width: 100vw !important; /* Gunakan seluruh lebar skrin */
+  }
+}
